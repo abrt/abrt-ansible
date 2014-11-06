@@ -1,0 +1,18 @@
+- name: install faf-webui packages
+  yum : name={{ item }} state=latest
+  with_items:
+    - faf-webui
+    - faf-webui2
+
+- name: provide /etc/faf.conf
+  template: src=etc-faf.conf.j2
+    dest=/etc/faf.conf
+  notify:
+  - restart httpd
+
+- name: put webfaf on root (/) if configured
+  template: src=etc-httpd-conf.d-faf-web2.conf.j2
+    dest=/etc/httpd/conf.d/faf-web2.conf
+  when: webfaf_on_root
+  notify:
+  - restart httpd

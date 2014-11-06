@@ -1,0 +1,29 @@
+# Faf site-wide configuration file
+# The settings are overridden by the file specified in
+# FAF_CONFIG_FILE environment variable.
+[Main]
+PluginsDir = /etc/faf/plugins/
+TemplatesDir = /etc/faf/templates/
+AutoEnablePlugins = False
+
+[Storage]
+ConnectString = {{ db_connectstring }}
+LobDir = /var/spool/faf/lob
+# Using platform-specific location by default.
+# Uncomment and change if needed.
+# TmpDir = /tmp
+#
+[Mail]
+# where to send notification emails, comma separated list
+Admins = {{ rootmail }}
+Server = localhost
+Port = 25
+Username =
+Password =
+
+
+
+[uReport]
+# The directory that holds 'reports' and 'attachments' subdirectories
+Directory = /var/spool/faf
+CreateComponents = False

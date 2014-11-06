@@ -1,0 +1,8 @@
+[defaults]
+private_key_file = /home/rmarko/.ssh/id_rsa
+hostfile       = hosts
+library        = /usr/share/ansible
+roles_path =
+nocows = 1
+remote_user = root
+ansible_managed = Ansible managed: {file} modified on %Y-%m-%d %H:%M:%S by {uid} on {host}

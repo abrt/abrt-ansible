@@ -1,0 +1,69 @@
+- name: set correct hostname
+  hostname: name={{ hostname }}
+
+- name: install common packages
+  yum : name={{ item }} state=installed
+  with_items:
+  - bash-completion
+  - iptables
+  - iptables-services
+  - libselinux-python
+  - ntp
+  - policycoreutils
+  - policycoreutils-python
+
+- name: make sure we have the right time
+  shell: ntpdate -u 0.europe.pool.ntp.org
+  ignore_errors: yes
+
+- name: start the ntp service
+  service: name=ntpd state=started enabled=yes
+
+#- name: SELinux Enforcing (Targeted)
+#  selinux: policy=targeted state=enforcing
+#  ignore_errors: yes
+#
+# No SELinux support yet :(
+# ignore_errors required as this fails in LXC
+#
+- name: SELinux Permissive
+  selinux: policy=targeted state=permissive
+  ignore_errors: yes
+
+- name: create the EPEL Repository
+  copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: create the GPG key for EPEL
+  copy: src=RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: create ABRT Repository for CentOS/RHEL
+  copy: src=epel-abrt.repo dest=/etc/yum.repos.d/epel-abrt.repo
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: create ABRT Repository for Fedora
+  copy: src=fedora-abrt.repo dest=/etc/yum.repos.d/fedora-abrt.repo
+  when: ansible_distribution == 'Fedora'
+
+- name: create custom FAF repository
+  template: src=custom-faf.repo.j2
+    dest=/etc/yum.repos.d/custom-faf.repo
+  when: custom_faf_repository_url is defined
+
+- name: set root alias
+  lineinfile: "dest=/etc/aliases line='root: {{ rootmail }}' regexp='^root:' state=present"
+  notify:
+  - update mail aliases
+
+- name: configure iptables
+  template: src=etc-sysconfig-iptables.j2
+    dest=/etc/sysconfig/iptables
+  notify:
+  - restart iptables
+
+- name: configure ip6tables
+  template: src=etc-sysconfig-ip6tables.j2
+    dest=/etc/sysconfig/ip6tables
+  notify:
+  - restart ip6tables

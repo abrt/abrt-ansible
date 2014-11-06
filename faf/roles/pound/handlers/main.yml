@@ -1,0 +1,2 @@
+- name: restart pound
+  service: name=pound state=restarted

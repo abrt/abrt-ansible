@@ -1,0 +1,22 @@
+- name: install PostgreSQL packages
+  yum : name={{ item }} state=installed
+  with_items:
+  - postgresql
+  - postgresql-server
+  - python-psycopg2
+
+- name: initialize PostgreSQL database
+  command: /usr/bin/postgresql-setup initdb
+  when: first_time_setup
+
+- name: start the PostgreSQL service
+  service: name=postgresql state=started enabled=yes
+
+- postgresql_db: name=faf
+  when: first_time_setup
+  sudo: yes
+  sudo_user: postgres
+
+- postgresql_user: db=faf name=faf priv=ALL
+  sudo: yes
+  sudo_user: postgres

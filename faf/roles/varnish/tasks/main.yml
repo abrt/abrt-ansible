@@ -1,0 +1,19 @@
+- name: install varnish package
+  yum : name={{ item }} state=installed
+  with_items:
+  - varnish
+
+- name: add varnish vcl
+  template: src=etc-varnish-default.vcl.j2
+    dest=/etc/varnish/default.vcl
+  notify:
+  - restart varnish
+
+- name: add varnish params
+  template: src=etc-varnish-varnish.params.j2
+    dest=/etc/varnish/varnish.params
+  notify:
+  - restart varnish
+
+- name: enable varnish service
+  service: name=varnish state=started enabled=yes

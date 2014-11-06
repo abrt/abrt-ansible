@@ -1,0 +1,22 @@
+---
+# Variables listed here are applicable to all host groups
+
+domain: faf.local
+hostname: faf.local
+rootmail: root@localhost.localdomain
+
+apache_port: 8080
+varnish_port: 6081
+
+webfaf_on_root: true
+
+# connectstring to use for faf web & storage in format:
+# driver://user:password@host:port/database
+db_connectstring: postgresql:///faf
+
+# set to true if this is the very first run of this playbook
+# it will set-up postgresql database and initial data for faf
+first_time_setup: false
+
+# configure to use custom repository for faf's packages
+custom_faf_repository_url: http://192.168.122.1:8001/

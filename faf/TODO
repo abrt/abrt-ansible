@@ -1,0 +1,11 @@
+commit configurable ProxyFix http://stackoverflow.com/questions/23347387/x-forwarded-proto-and-flask
+varnish should pass requests with 'session' cookie
+disable csrf?
+
+configurable cert / selfsigned cert
+
+add HOWTO:
+ - configure hostname
+ - configure hosts
+ - set first time to true
+ - resolve autoenable

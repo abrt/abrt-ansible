@@ -1,0 +1,23 @@
+- name: install pound package
+  yum : name={{ item }} state=installed
+  with_items:
+  - Pound
+
+- name: create self-signed SSL cert
+  command: openssl req -new -nodes -x509 -subj "/CN={{ domain }}" -days 3650 -keyout /etc/pki/tls/private/{{ domain }}.key -out /etc/pki/tls/certs/{{ domain }}.crt
+  args:
+    creates: /etc/pki/tls/certs/{{ domain }}.crt
+
+- name: install certificate and key
+  shell: cat /etc/pki/tls/private/{{ domain }}.key /etc/pki/tls/certs/{{ domain }}.crt > /etc/pki/tls/certs/{{ domain }}.pem
+  args:
+    creates: /etc/pki/tls/certs/{{ domain }}.pem
+
+- name: configure pound
+  template: src=etc-pound.cfg.j2
+    dest=/etc/pound.cfg
+  notify:
+  - restart pound
+
+- name: enable pound service
+  service: name=pound state=started enabled=yes

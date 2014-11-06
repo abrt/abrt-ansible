@@ -1,0 +1,23 @@
+- name: aplly common configuration to all nodes
+  hosts: all
+  roles:
+    - smtp
+    - common
+
+- name: deploy and configure faf storage (backend)
+  hosts: storage
+  roles:
+    - storage
+
+- name: deploy and configure faf web (frontend)
+  hosts: web
+  roles:
+    - httpd
+    - varnish
+    - pound
+    - web
+
+- name: deploy and configure PostgreSQL database server
+  hosts: db
+  roles:
+    - db
