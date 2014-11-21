@@ -4,9 +4,14 @@
     - faf-webui
     - faf-webui2
 
-- name: provide /etc/faf.conf
+- name: check /etc/faf/faf.conf existence so we don't overwrite it in case there's faf's storage as well
+  stat: path=/etc/faf/faf.conf
+  register: etcfaf_exists
+
+- name: provide /etc/faf/faf.conf
   template: src=etc-faf.conf.j2
-    dest=/etc/faf.conf
+    dest=/etc/faf/faf.conf
+  when: etcfaf_exists.stat.exists == False
   notify:
   - restart httpd
 

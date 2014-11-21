@@ -3,7 +3,12 @@
 
 domain: faf.local
 hostname: faf.local
+
 rootmail: root@localhost.localdomain
+smtp_server: localhost
+smtp_port: 25
+smtp_username:
+smtp_password:
 
 apache_port: 8080
 varnish_port: 6081

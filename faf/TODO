@@ -1,8 +1,7 @@
-commit configurable ProxyFix http://stackoverflow.com/questions/23347387/x-forwarded-proto-and-flask
-varnish should pass requests with 'session' cookie
-disable csrf?
-
 configurable cert / selfsigned cert
+secret keys
+set url in web2.conf
+set proxyfix to true in ^^
 
 add HOWTO:
  - configure hostname

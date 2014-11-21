@@ -16,12 +16,10 @@ LobDir = /var/spool/faf/lob
 [Mail]
 # where to send notification emails, comma separated list
 Admins = {{ rootmail }}
-Server = localhost
-Port = 25
-Username =
-Password =
-
-
+Server = {{ smtp_server }}
+Port = {{ smtp_port }}
+Username = {{ smtp_username|default("", true) }}
+Password = {{ smtp_password|default("", true) }}
 
 [uReport]
 # The directory that holds 'reports' and 'attachments' subdirectories
