@@ -15,6 +15,12 @@
   notify:
   - restart httpd
 
+- name: provide /etc/faf/plugins/web2.conf
+  template: src=etc-faf-plugins-web2.conf.j2
+    dest=/etc/faf/plugins/web2.conf
+  notify:
+  - restart httpd
+
 - name: put webfaf on root (/) if configured
   template: src=etc-httpd-conf.d-faf-web2.conf.j2
     dest=/etc/httpd/conf.d/faf-web2.conf

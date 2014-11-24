@@ -14,6 +14,7 @@ apache_port: 8080
 varnish_port: 6081
 
 webfaf_on_root: true
+secret_key: not_a_secret
 
 # connectstring to use for faf web & storage in format:
 # driver://user:password@host:port/database

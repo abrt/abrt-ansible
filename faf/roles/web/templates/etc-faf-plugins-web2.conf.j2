@@ -1,0 +1,15 @@
+[hub2]
+debug = false
+proxy_setup = true
+secret_key = {{ secret_key }}
+{% if webfaf_on_root %}
+url = https://{{ domain }}/
+{% else %}
+url = https://{{ domain }}/faf/
+{% endif %}
+
+[DumpDir]
+CacheDirectory = /var/spool/faf/dumpdirs
+CacheDirectoryCountQuota = 100
+CacheDirectorySizeQuota = 107374182400
+MaxDumpDirSize = 1073741824
