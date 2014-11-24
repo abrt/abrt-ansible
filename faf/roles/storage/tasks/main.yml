@@ -2,7 +2,7 @@
   yum: pkg="faf-*" state=installed
 
 - name: provide /etc/faf/faf.conf
-  template: src=etc-faf.conf.j2
+  template: src=etc-faf-faf.conf.j2
     dest=/etc/faf/faf.conf
 
 - name: init faf

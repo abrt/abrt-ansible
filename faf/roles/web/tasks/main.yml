@@ -9,7 +9,7 @@
   register: etcfaf_exists
 
 - name: provide /etc/faf/faf.conf
-  template: src=etc-faf.conf.j2
+  template: src=etc-faf-faf.conf.j2
     dest=/etc/faf/faf.conf
   when: etcfaf_exists.stat.exists == False
   notify:
