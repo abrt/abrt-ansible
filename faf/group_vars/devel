@@ -1,0 +1,9 @@
+---
+# development setup
+
+domain: faf-devel.local
+hostname: faf-devel.local
+
+# set to true if this is the very first run of this playbook
+# it will set-up postgresql database and initial data for faf
+# first_time_setup: true

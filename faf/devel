@@ -1,1 +1,1 @@
-ANSIBLE_CONFIG=faf_devel_ansible_config ansible-playbook -vvv site.yml
+ANSIBLE_CONFIG=conf/devel_config ansible-playbook -v site.yml $1

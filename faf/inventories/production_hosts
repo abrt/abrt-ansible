@@ -1,0 +1,13 @@
+[web]
+faf-prod.local
+
+[storage]
+faf-prod.local
+
+[db]
+faf-prod.local
+
+[prod:children]
+web
+storage
+db

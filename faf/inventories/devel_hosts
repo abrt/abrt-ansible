@@ -1,0 +1,13 @@
+[web]
+faf-devel.local
+
+[storage]
+faf-devel.local
+
+[db]
+faf-devel.local
+
+[devel:children]
+web
+storage
+db

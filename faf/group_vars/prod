@@ -1,0 +1,11 @@
+---
+# production setup
+
+domain: faf-prod.local
+hostname: faf-prod.local
+
+secret_key: change_this
+
+# set to true if this is the very first run of this playbook
+# it will set-up postgresql database and initial data for faf
+# first_time_setup: true

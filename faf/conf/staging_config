@@ -1,6 +1,6 @@
 [defaults]
-private_key_file = /home/rmarko/.ssh/id_rsa
-hostfile       = hosts_devel
+private_key_file = ~/.ssh/id_rsa
+hostfile       = ./inventories/staging_hosts
 library        = /usr/share/ansible
 roles_path =
 nocows = 1

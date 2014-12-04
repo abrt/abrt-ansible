@@ -1,0 +1,13 @@
+[web]
+faf-staging.local
+
+[storage]
+faf-staging.local
+
+[db]
+faf-staging.local
+
+[staging:children]
+web
+storage
+db

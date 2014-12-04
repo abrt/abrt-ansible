@@ -1,0 +1,1 @@
+ANSIBLE_CONFIG=conf/staging_config ansible-playbook -v site.yml $1
