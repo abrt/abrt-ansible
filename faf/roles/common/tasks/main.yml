@@ -11,6 +11,8 @@
   - ntp
   - policycoreutils
   - policycoreutils-python
+  - vim
+  - sudo
 
 - name: make sure we have the right time
   shell: ntpdate -u 0.europe.pool.ntp.org

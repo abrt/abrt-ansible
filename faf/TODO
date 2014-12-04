@@ -1,7 +1,4 @@
 configurable cert / selfsigned cert
-secret keys
-set url in web2.conf
-set proxyfix to true in ^^
 
 add HOWTO:
  - configure hostname
