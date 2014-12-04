@@ -6,6 +6,11 @@ hostname: faf-prod.local
 
 secret_key: change_this
 
+# and provide these
+
+ssl_key_src_path: files/YOURKEY.key
+ssl_cert_src_path: files/YOURCERT.crt
+
 # set to true if this is the very first run of this playbook
 # it will set-up postgresql database and initial data for faf
 # first_time_setup: true

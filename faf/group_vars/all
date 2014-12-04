@@ -16,6 +16,13 @@ varnish_port: 6081
 webfaf_on_root: true
 secret_key: not_a_secret
 
+ssl_key_src_path:
+ssl_cert_src_path:
+
+ssl_key_dest_path: /etc/pki/tls/private/{{ domain }}.key
+ssl_cert_dest_path: /etc/pki/tls/certs/{{ domain }}.crt
+ssl_cert_pem_dest_path: /etc/pki/tls/certs/{{ domain }}.pem
+
 # connectstring to use for faf web & storage in format:
 # driver://user:password@host:port/database
 db_connectstring: postgresql:///faf

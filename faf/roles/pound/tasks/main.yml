@@ -3,15 +3,32 @@
   with_items:
   - Pound
 
+# Self-Signed
+- name: install openssl
+  yum : name=openssl state=installed
+  when: not (ssl_key_src_path or ssl_cert_src_path)
+
 - name: create self-signed SSL cert
-  command: openssl req -new -nodes -x509 -subj "/CN={{ domain }}" -days 3650 -keyout /etc/pki/tls/private/{{ domain }}.key -out /etc/pki/tls/certs/{{ domain }}.crt
+  command: openssl req -new -nodes -x509 -subj "/CN={{ domain }}" -days 3650 -keyout "{{ ssl_key_dest_path }}"  -out "{{ ssl_cert_dest_path }}"
   args:
-    creates: /etc/pki/tls/certs/{{ domain }}.crt
+    creates: "{{ ssl_cert_dest_path }}"
+  when: not (ssl_key_src_path or ssl_cert_src_path)
+
+# User provided
+- name: copy SSL key
+  copy: src={{ ssl_key_src_path }} dest={{ ssl_key_dest_path }} mode=640
+  when: ssl_key_src_path and ssl_cert_src_path
+
+- name: copy SSL cert
+  copy: src={{ ssl_cert_src_path }} dest={{ ssl_cert_dest_path }} mode=644
+  when: ssl_key_src_path and ssl_cert_src_path
 
 - name: install certificate and key
-  shell: cat /etc/pki/tls/private/{{ domain }}.key /etc/pki/tls/certs/{{ domain }}.crt > /etc/pki/tls/certs/{{ domain }}.pem
+  shell: cat "{{ ssl_key_dest_path }}" "{{ ssl_cert_dest_path }}" > "{{ ssl_cert_pem_dest_path }}"
   args:
-    creates: /etc/pki/tls/certs/{{ domain }}.pem
+    creates: "{{ ssl_cert_pem_dest_path }}"
+  notify:
+  - restart pound
 
 - name: configure pound
   template: src=etc-pound.cfg.j2
