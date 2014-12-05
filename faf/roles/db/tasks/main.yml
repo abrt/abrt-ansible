@@ -5,9 +5,17 @@
   - postgresql-server
   - python-psycopg2
 
-- name: initialize PostgreSQL database
+- name: check /usr/bin/postgresql-setup existence
+  stat: path=/usr/bin/postgresql-setup
+  register: pgsetup_exists
+
+- name: initialize PostgreSQL database with postgresql-setup
   command: /usr/bin/postgresql-setup initdb
-  when: first_time_setup
+  when: first_time_setup and pgsetup_exists.stat.exists == True
+
+- name: initialize PostgreSQL database
+  command: /sbin/service postgresql initdb
+  when: first_time_setup and pgsetup_exists.stat.exists == False
 
 - name: start the PostgreSQL service
   service: name=postgresql state=started enabled=yes
