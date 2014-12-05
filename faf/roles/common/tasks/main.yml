@@ -4,15 +4,20 @@
 - name: install common packages
   yum : name={{ item }} state=installed
   with_items:
-  - bash-completion
   - iptables
-  - iptables-services
   - libselinux-python
   - ntp
   - policycoreutils
   - policycoreutils-python
   - vim
   - sudo
+
+- name: install common packages for Fedora
+  yum : name={{ item }} state=installed
+  with_items:
+  - bash-completion
+  - iptables-services
+  when: ansible_distribution == 'Fedora'
 
 - name: make sure we have the right time
   shell: ntpdate -u 0.europe.pool.ntp.org
