@@ -1,1 +1,1 @@
-ANSIBLE_CONFIG=config/prod_config ansible-playbook -v site.yml $1
+ANSIBLE_CONFIG=conf/prod_config ansible-playbook -v site.yml $1
