@@ -47,11 +47,11 @@
 
 - name: create ABRT Repository for CentOS/RHEL
   copy: src=epel-abrt.repo dest=/etc/yum.repos.d/epel-abrt.repo
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' and custom_faf_repository_url is not defined
 
 - name: create ABRT Repository for Fedora
   copy: src=fedora-abrt.repo dest=/etc/yum.repos.d/fedora-abrt.repo
-  when: ansible_distribution == 'Fedora'
+  when: ansible_distribution == 'Fedora' and custom_faf_repository_url is not defined
 
 - name: create custom FAF repository
   template: src=custom-faf.repo.j2
