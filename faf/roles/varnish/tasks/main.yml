@@ -28,4 +28,4 @@
   - restart varnish
 
 - name: enable varnish service
-  service: name=varnish state=started enabled=yes
+  service: name=varnish state=restarted enabled=yes
