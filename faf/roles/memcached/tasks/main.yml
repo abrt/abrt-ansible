@@ -1,0 +1,14 @@
+- name: install memcached package
+  yum : name={{ item }} state=installed
+  with_items:
+  - memcached
+  - python-pylibmc
+
+- name: configure memcached
+  template: src=etc-sysconfig-memcached
+    dest=/etc/sysconfig/memcached
+  notify:
+  - restart memcached
+
+- name: start memcached service
+  service: name=memcached state=started enabled=yes

@@ -13,8 +13,7 @@
   hosts: web
   roles:
     - httpd
-    - varnish
-    - pound
+    - memcached
     - web
 
 - name: deploy and configure PostgreSQL database server

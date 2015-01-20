@@ -10,8 +10,13 @@ smtp_port: 25
 smtp_username:
 smtp_password:
 
-apache_port: 8080
+apache_host: 0.0.0.0
+apache_port: 80
 varnish_port: 6081
+
+memcached_memory: 64
+memcached_port: 11211
+memcached_maxconn: 1024
 
 webfaf_on_root: true
 secret_key: not_a_secret

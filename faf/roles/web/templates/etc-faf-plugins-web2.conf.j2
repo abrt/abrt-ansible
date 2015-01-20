@@ -13,3 +13,9 @@ CacheDirectory = /var/spool/faf/dumpdirs
 CacheDirectoryCountQuota = 100
 CacheDirectorySizeQuota = 107374182400
 MaxDumpDirSize = 1073741824
+
+[cache]
+type = memcached
+memcached_host = localhost
+memcached_port = {{ memcached_port }}
+memcached_key_prefix = webfaf2
