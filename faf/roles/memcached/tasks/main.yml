@@ -2,7 +2,18 @@
   yum : name={{ item }} state=installed
   with_items:
   - memcached
+
+- name: install python-pylibmc package for Fedora
+  yum : name={{ item }} state=installed
+  with_items:
   - python-pylibmc
+  when: ansible_distribution == 'Fedora'
+
+- name: install python-memcached package for Epel
+  yum : name={{ item }} state=installed
+  with_items:
+  - python-memcached
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: configure memcached
   template: src=etc-sysconfig-memcached
