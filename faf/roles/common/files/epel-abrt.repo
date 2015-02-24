@@ -13,3 +13,37 @@ baseurl=http://repos.fedorapeople.org/repos/abrt/abrt/epel-$releasever/SRPMS
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0
+
+# faf requires newer versions of following packages than available on EL6
+
+[rmarko-python-psycopg2]
+name=Copr repo for python-psycopg2 owned by rmarko
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-psycopg2/epel-6-$basearch/
+skip_if_unavailable=True
+gpgcheck=0
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-psycopg2/epel-6-$basearch/pubkey.gpg
+enabled=1
+
+[rmarko-python-jinja2]
+name=Copr repo for python-jinja2 owned by rmarko
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-jinja2/epel-6-$basearch/
+skip_if_unavailable=True
+gpgcheck=0
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-jinja2/epel-6-$basearch/pubkey.gpg
+enabled=1
+
+[rmarko-python-testing.postgresql]
+name=Copr repo for python-testing.postgresql owned by rmarko
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-testing.postgresql/epel-6-$basearch/
+skip_if_unavailable=True
+gpgcheck=0
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-testing.postgresql/epel-6-$basearch/pubkey.gpg
+enabled=1
+
+[rmarko-python-flask]
+name=Copr repo for python-flask owned by rmarko
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-flask/epel-6-$basearch/
+skip_if_unavailable=True
+gpgcheck=0
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-flask/epel-6-$basearch/pubkey.gpg
+enabled=1
