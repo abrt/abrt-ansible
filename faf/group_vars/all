@@ -36,5 +36,9 @@ db_connectstring: postgresql:///faf
 # it will set-up postgresql database and initial data for faf
 first_time_setup: false
 
+# dangerous, delete and re-create PostgreSQL database
+# (will wipe Postgre's data dir and re-create from scratch)
+recreate_database: false
+
 # configure to use custom repository for faf's packages
 # custom_faf_repository_url: http://192.168.122.1:8001/

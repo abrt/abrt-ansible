@@ -5,6 +5,14 @@
   - postgresql-server
   - python-psycopg2
 
+- name: stop PostgreSQL
+  service: name=postgresql state=stopped
+  when: recreate_database
+
+- name: delete PostgreSQL data dir
+  file: path=/var/lib/pgsql/data/ state=absent
+  when: recreate_database
+
 - name: check /usr/bin/postgresql-setup existence
   stat: path=/usr/bin/postgresql-setup
   register: pgsetup_exists
