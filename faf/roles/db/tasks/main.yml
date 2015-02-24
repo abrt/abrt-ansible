@@ -4,6 +4,7 @@
   - postgresql
   - postgresql-server
   - python-psycopg2
+  - pg-semver
 
 - name: stop PostgreSQL
   service: name=postgresql state=stopped
@@ -35,5 +36,19 @@
 
 - postgresql_user: db=faf name=faf priv=ALL
   when: first_time_setup
+  sudo: yes
+  sudo_user: postgres
+
+- name: load semver extension
+  command: /usr/bin/psql -d faf -c "CREATE EXTENSION semver;"
+  when: first_time_setup
+  sudo: yes
+  sudo_user: postgres
+  register: create_ext_result
+  ignore_errors: True
+
+- name: load semver extension for PostgreSQL older than 9.1
+  command: /usr/bin/psql -d faf -f /usr/share/pgsql/contrib/semver.sql
+  when: first_time_setup and create_ext_result|failed
   sudo: yes
   sudo_user: postgres
