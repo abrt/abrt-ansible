@@ -39,15 +39,15 @@
 
 - name: create the EPEL Repository
   copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
 
 - name: create the GPG key for EPEL
   copy: src=RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
 
-- name: create ABRT Repository for CentOS/RHEL
+- name: create ABRT Repository for EL
   copy: src=epel-abrt.repo dest=/etc/yum.repos.d/epel-abrt.repo
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' and custom_faf_repository_url is not defined
+  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6' and custom_faf_repository_url is not defined
 
 - name: create ABRT Repository for Fedora
   copy: src=fedora-abrt.repo dest=/etc/yum.repos.d/fedora-abrt.repo

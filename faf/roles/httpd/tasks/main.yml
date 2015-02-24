@@ -3,6 +3,11 @@
   with_items:
   - httpd
 
+- name: provide conf.modules.d for EL6
+  copy: src=conf.modules.d/
+    dest=/etc/httpd/conf.modules.d/
+  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
+
 - name: configure httpd
   template: src=etc-httpd-conf-httpd.conf.j2
     dest=/etc/httpd/conf/httpd.conf
