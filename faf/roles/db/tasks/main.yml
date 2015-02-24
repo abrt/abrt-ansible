@@ -26,5 +26,6 @@
   sudo_user: postgres
 
 - postgresql_user: db=faf name=faf priv=ALL
+  when: first_time_setup
   sudo: yes
   sudo_user: postgres
