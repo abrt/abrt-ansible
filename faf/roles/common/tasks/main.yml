@@ -58,6 +58,11 @@
     dest=/etc/yum.repos.d/custom-faf.repo
   when: custom_faf_repository_url is defined
 
+- name: remove custom repository if present and disabled
+  file: path=/etc/yum.repos.d/custom-faf.repo
+    state=absent
+  when: custom_faf_repository_url is not defined
+
 - name: set root alias
   lineinfile: "dest=/etc/aliases line='root: {{ rootmail }}' regexp='^root:' state=present"
   notify:
