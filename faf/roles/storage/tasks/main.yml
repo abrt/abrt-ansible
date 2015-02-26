@@ -5,6 +5,12 @@
   template: src=etc-faf-faf.conf.j2
     dest=/etc/faf/faf.conf
 
+- name: create faf's database schema
+  command: faf-migrate-db --create-all
+  sudo: yes
+  sudo_user: faf
+  when: first_time_setup
+
 - name: init faf
   command: faf init
   sudo: yes
