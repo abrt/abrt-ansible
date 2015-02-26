@@ -1,7 +1,4 @@
-Ansible recipes for configuring and deploying ABRT stack
-========================================================
-
-Currently supported:
+Currently supported components:
 
 - faf
 
