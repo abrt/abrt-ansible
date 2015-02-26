@@ -53,6 +53,11 @@
   copy: src=fedora-abrt.repo dest=/etc/yum.repos.d/fedora-abrt.repo
   when: ansible_distribution == 'Fedora' and custom_faf_repository_url is not defined
 
+- name: remove ABRT repository if custom repo is enabled
+  file: path=/etc/yum.repos.d/fedora-abrt.repo
+    state=absent
+  when: custom_faf_repository_url is defined
+
 - name: create custom FAF repository
   template: src=custom-faf.repo.j2
     dest=/etc/yum.repos.d/custom-faf.repo
