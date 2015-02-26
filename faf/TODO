@@ -1,5 +1,2 @@
-add HOWTO:
- - configure hostname
- - configure hosts
- - set first time to true
- - resolve autoenable
+- add httpd ssl support
+- support updates & db migration
