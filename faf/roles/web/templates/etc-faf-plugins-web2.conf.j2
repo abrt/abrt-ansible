@@ -15,7 +15,7 @@ CacheDirectorySizeQuota = 107374182400
 MaxDumpDirSize = 1073741824
 
 [cache]
-type = memcached
+type = {{ cache_type }}
 memcached_host = localhost
 memcached_port = {{ memcached_port }}
 memcached_key_prefix = webfaf2

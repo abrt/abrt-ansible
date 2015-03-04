@@ -14,6 +14,8 @@ apache_host: 0.0.0.0
 apache_port: 80
 varnish_port: 6081
 
+# cache type either: memcached/simple/none
+cache_type: memcached
 memcached_memory: 64
 memcached_port: 11211
 memcached_maxconn: 1024
