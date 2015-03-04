@@ -1,3 +1,7 @@
+- name: erase faf packages
+  yum: pkg="faf-*" state=absent
+  when: force_reinstall
+
 - name: install faf packages
   yum: pkg="faf-*" state=installed
 

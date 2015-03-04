@@ -68,6 +68,14 @@
     state=absent
   when: custom_faf_repository_url is not defined
 
+- name: clean repository metadata for custom repository
+  shell: yum --disablerepo=* --enablerepo=faf clean metadata
+  when: force_reinstall and custom_faf_repository_url is defined
+
+- name: clean repository metadata for abrt repository
+  shell: yum --disablerepo=* --enablerepo=*-abrt clean metadata
+  when: force_reinstall and custom_faf_repository_url is not defined
+
 - name: set root alias
   lineinfile: "dest=/etc/aliases line='root: {{ rootmail }}' regexp='^root:' state=present"
   notify:
