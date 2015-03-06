@@ -12,7 +12,6 @@ smtp_password:
 
 apache_host: 0.0.0.0
 apache_port: 80
-varnish_port: 6081
 
 # cache type either: memcached/simple/none
 cache_type: memcached
@@ -28,7 +27,6 @@ ssl_cert_src_path:
 
 ssl_key_dest_path: /etc/pki/tls/private/{{ domain }}.key
 ssl_cert_dest_path: /etc/pki/tls/certs/{{ domain }}.crt
-ssl_cert_pem_dest_path: /etc/pki/tls/certs/{{ domain }}.pem
 
 # connectstring to use for faf web & storage in format:
 # driver://user:password@host:port/database
