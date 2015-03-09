@@ -12,8 +12,8 @@ smtp_password:
 
 # server alias used in httpd
 httpd_alias:
-apache_host: 0.0.0.0
-apache_port: 80
+httpd_host: 0.0.0.0
+httpd_port: 80
 
 # cache type either: memcached/simple/none
 cache_type: memcached

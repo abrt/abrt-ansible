@@ -133,7 +133,7 @@ MaxRequestsPerChild  0
 # prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
 #
 #Listen 12.34.56.78:80
-Listen {{ apache_host }}:{{ apache_port }}
+Listen {{ httpd_host }}:{{ httpd_port }}
 
 # DSO
 Include conf.modules.d/*.conf
@@ -196,7 +196,7 @@ ServerAdmin root@localhost
 # You will have to access it by its address anyway, and this will make 
 # redirections work in a sensible way.
 #
-ServerName 127.0.0.1:{{ apache_port }}
+ServerName 127.0.0.1:{{ httpd_port }}
 
 #
 # UseCanonicalName: Determines how Apache constructs self-referencing 
