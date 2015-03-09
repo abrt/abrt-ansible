@@ -1,0 +1,27 @@
+<VirtualHost*:80>
+  ServerName {{ hostname }}
+{% if httpd_alias %}
+  ServerAlias {{ httpd_alias }}
+{% endif %}
+  ServerAdmin {{ rootmail }}
+  TraceEnable Off
+
+  RedirectMatch ^/(.*)$ https://{{ hostname }}/$1
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName {{ hostname }}
+{% if httpd_alias %}
+  ServerAlias {{ httpd_alias }}
+{% endif %}
+  ServerAdmin {{ rootmail }}
+
+  SSLEngine on
+  SSLCertificateFile {{ ssl_cert_dest_path }}
+  SSLCertificateKeyFile {{ ssl_key_dest_path }}
+{% if ssl_cert_chain_src_path %}
+  SSLCertificateChainFile {{ ssl_cert_chain_dest_path }}
+{% endif %}
+  SSLCipherSuite RSA:!EXPORT:!MD5:!RC4:!DH:!LOW:!NULL:+MEDIUM:+HIGH
+  SSLProtocol -ALL -SSLv3 +TLSv1 +TLSv1.1 +TLSv1.2
+</VirtualHost>

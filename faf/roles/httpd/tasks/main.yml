@@ -2,6 +2,7 @@
   yum : name={{ item }} state=installed
   with_items:
   - httpd
+  - mod_ssl
 
 - name: provide conf.modules.d for EL6
   copy: src=conf.modules.d/
@@ -11,6 +12,32 @@
 - name: configure httpd
   template: src=etc-httpd-conf-httpd.conf.j2
     dest=/etc/httpd/conf/httpd.conf
+  notify:
+  - restart httpd
+
+- name: copy SSL key
+  copy: src={{ ssl_key_src_path }} dest={{ ssl_key_dest_path }} mode=640
+  when: ssl_key_src_path and ssl_key_dest_path
+
+- name: copy SSL cert
+  copy: src={{ ssl_cert_src_path }} dest={{ ssl_cert_dest_path }} mode=644
+  when: ssl_cert_src_path and ssl_cert_dest_path
+
+- name: copy SSL chain cert
+  copy: src={{ ssl_cert_chain_src_path }} dest={{ ssl_cert_chain_dest_path }} mode=644
+  when: ssl_cert_chain_src_path and ssl_cert_chain_dest_path
+
+- name: add ssl vhost
+  template: src=ssl-vhost.conf.j2
+    dest=/etc/httpd/conf.d/ssl-vhost.conf
+  when: ssl_key_src_path is defined
+  notify:
+  - restart httpd
+
+- name: delete default ssl config
+  file: path=/etc/httpd/conf.d/ssl.conf
+    state=absent
+  when: ssl_key_src_path is defined
   notify:
   - restart httpd
 

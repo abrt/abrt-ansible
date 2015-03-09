@@ -10,6 +10,8 @@ smtp_port: 25
 smtp_username:
 smtp_password:
 
+# server alias used in httpd
+httpd_alias:
 apache_host: 0.0.0.0
 apache_port: 80
 
@@ -24,9 +26,11 @@ secret_key: not_a_secret
 
 ssl_key_src_path:
 ssl_cert_src_path:
+ssl_cert_chain_src_path:
 
 ssl_key_dest_path: /etc/pki/tls/private/{{ domain }}.key
-ssl_cert_dest_path: /etc/pki/tls/certs/{{ domain }}.crt
+ssl_cert_dest_path: /etc/pki/tls/certs/{{ domain }}.cert
+ssl_cert_chain_dest_path: /etc/pki/tls/certs/{{ domain }}.intermediate.cert
 
 # connectstring to use for faf web & storage in format:
 # driver://user:password@host:port/database
