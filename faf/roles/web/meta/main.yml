@@ -1,3 +1,0 @@
-dependencies:
-  - { role: db, recreate_database: false, first_time_setup: false }
-  - { role: httpd }
