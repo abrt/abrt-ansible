@@ -49,3 +49,6 @@ recreate_database: false
 
 # force faf packages reinstallation
 force_reinstall: false
+
+# run faf's database migrations
+migrate_db: false

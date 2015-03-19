@@ -20,3 +20,9 @@
   sudo: yes
   sudo_user: faf
   when: first_time_setup
+
+- name: run databse migrations
+  command: faf-migrate-db
+  sudo: yes
+  sudo_user: faf
+  when: migrate_db
