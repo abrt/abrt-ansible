@@ -1,21 +1,25 @@
 - name: aplly common configuration to all nodes
   hosts: all
+  sudo: yes
   roles:
     - smtp
     - common
 
 - name: deploy and configure PostgreSQL database server
   hosts: db
+  sudo: yes
   roles:
     - db
 
 - name: deploy and configure faf storage (backend)
   hosts: storage
+  sudo: yes
   roles:
     - storage
 
 - name: deploy and configure faf web (frontend)
   hosts: web
+  sudo: yes
   roles:
     - httpd
     - memcached
