@@ -30,14 +30,14 @@
 - name: add ssl vhost
   template: src=ssl-vhost.conf.j2
     dest=/etc/httpd/conf.d/ssl-vhost.conf
-  when: ssl_key_src_path is defined
+  when: ssl_key_src_path is defined and ssl_key_src_path
   notify:
   - restart httpd
 
 - name: delete default ssl config
   file: path=/etc/httpd/conf.d/ssl.conf
     state=absent
-  when: ssl_key_src_path is defined
+  when: ssl_key_src_path is defined and ssl_key_src_path
   notify:
   - restart httpd
 
