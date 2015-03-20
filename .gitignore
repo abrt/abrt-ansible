@@ -1,0 +1,5 @@
+faf/files/*.crt
+faf/files/*.key
+faf/host_vars/
+faf/inventories/hosts
+.vagrant
