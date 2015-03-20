@@ -26,16 +26,13 @@
 - name: start the ntp service
   service: name=ntpd state=started enabled=yes
 
-#- name: SELinux Enforcing (Targeted)
-#  selinux: policy=targeted state=enforcing
-#  ignore_errors: yes
-#
-# No SELinux support yet :(
-# ignore_errors required as this fails in LXC
-#
-- name: SELinux Permissive
-  selinux: policy=targeted state=permissive
-  ignore_errors: yes
+- name: SELinux Enforcing (Targeted)
+  selinux: policy=targeted state=enforcing
+  when: selinux
+
+- name: Allow httpd_can_network_memcache SELinux boolean
+  shell: setsebool httpd_can_network_memcache 1
+  when: selinux
 
 - name: create the EPEL Repository
   copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
