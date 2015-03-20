@@ -1,0 +1,25 @@
+Vagrant.configure("2") do |config|
+  config.vm.define :faf do |faf|
+    faf.vm.box = "humaton/fedora-21-cloud"
+    faf.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 2
+      domain.volume_cache = 'none'
+      domain.driver = "kvm"
+      domain.storage_pool_name = "default"
+    end
+  end
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "site.yml"
+    ansible.groups = {
+      "web" => ["faf"],
+      "storage" => ["faf"],
+      "db" => ["faf"],
+      "all_groups:children" => ["faf"]
+    }
+
+    ansible.extra_vars = {
+      first_time_setup: true,
+    }
+  end
+end

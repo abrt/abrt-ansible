@@ -8,6 +8,22 @@ Component specific how-to
 faf
 ~~~
 
+Using Vagrant
+=============
+
+Simplest way to get a faf instance running is:
+
+- ``git clone https://github.com/abrt/ansible.git abrt-ansible``
+- ``cd abrt-ansible/faf``
+- ``vagrant up``
+
+This will create a Fedora virtual machine using
+libvirt backend and provision it using Ansible
+in similar way as described in the next section.
+
+Provisioning with Ansible
+================================
+
 Following steps can be used to deploy and configure faf instance:
 
 - create a virtual machine (either Fedora or EL)
@@ -22,6 +38,7 @@ Following steps can be used to deploy and configure faf instance:
 - point your browser to the hostname or IP address of your testing machine to verify the installation
 - proceed with further configuration of your new instance, for all available configuration options
   see ``group_vars/all`` file.
+- it's recommended to use ``host_vars/<domain>`` to set configuration options for your machines.
 
 Running database migrations:
 
