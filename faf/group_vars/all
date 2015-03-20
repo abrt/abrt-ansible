@@ -25,6 +25,8 @@ memcached_port: 11211
 memcached_maxconn: 1024
 
 webfaf_on_root: true
+
+# important for production deployments
 secret_key: not_a_secret
 
 ssl_key_src_path:

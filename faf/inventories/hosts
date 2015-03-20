@@ -1,11 +1,11 @@
 [web]
-faf-devel.local
+faf.local
 
 [storage]
-faf-devel.local
+faf.local
 
 [db]
-faf-devel.local
+faf.local
 
 [devel:children]
 web

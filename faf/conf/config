@@ -1,6 +1,6 @@
 [defaults]
 private_key_file = ~/.ssh/id_rsa
-hostfile       = ./inventories/devel_hosts
+hostfile       = ./inventories/hosts
 library        = /usr/share/ansible
 roles_path =
 nocows = 1
