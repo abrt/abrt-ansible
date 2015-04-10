@@ -13,7 +13,7 @@ Using Vagrant
 
 Simplest way to get a faf instance running is:
 
-- ``git clone https://github.com/abrt/ansible.git abrt-ansible``
+- ``git clone https://github.com/abrt/abrt-ansible.git``
 - ``cd abrt-ansible/faf``
 - ``vagrant up``
 
