@@ -1,3 +1,9 @@
+{# EL6 doesn't ship ssl config in mod_ssl
+   package so we need to add Listen directive #}
+{% if ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6' %}
+Listen 443 https
+{% endif %}
+
 <VirtualHost *:80>
   ServerName {{ hostname }}
 {% if httpd_alias %}
