@@ -15,6 +15,12 @@
   sudo_user: faf
   when: first_time_setup
 
+- name: stamp database as migrated to latest version
+  command: faf-migrate-db --stamp-only
+  sudo: yes
+  sudo_user: faf
+  when: first_time_setup
+
 - name: init faf
   command: faf init
   sudo: yes
