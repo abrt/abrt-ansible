@@ -2,8 +2,8 @@
   hosts: all
   sudo: yes
   roles:
-    - smtp
     - common
+    - smtp
 
 - name: deploy and configure PostgreSQL database server
   hosts: db
