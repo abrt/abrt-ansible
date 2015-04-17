@@ -1,0 +1,11 @@
+---
+
+domain: faf-fedora.test
+hostname: faf-fedora.test
+selinux: true
+
+#first_time_setup: true
+custom_faf_repository_url: http://abrt.brq.redhat.com/repo/fedora-22/RPMS/x86_64/
+
+cache_type: none
+force_reinstall: true

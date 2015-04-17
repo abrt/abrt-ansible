@@ -1,0 +1,11 @@
+---
+
+domain: faf-centos6.test
+hostname: centos6.test
+selinux: true
+
+#first_time_setup: true
+custom_faf_repository_url: http://abrt.brq.redhat.com/repo/epel-6/RPMS/x86_64/
+
+cache_type: none
+force_reinstall: true

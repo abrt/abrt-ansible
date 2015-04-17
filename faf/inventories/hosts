@@ -1,11 +1,17 @@
 [web]
-faf.local
+faf-centos6.test
+faf-fedora.test
+faf-fedora-last-pr.test
 
 [storage]
-faf.local
+faf-centos6.test
+faf-fedora.test
+faf-fedora-last-pr.test
 
 [db]
-faf.local
+faf-centos6.test
+faf-fedora.test
+faf-fedora-last-pr.test
 
 [devel:children]
 web
