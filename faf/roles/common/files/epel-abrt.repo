@@ -47,3 +47,11 @@ skip_if_unavailable=True
 gpgcheck=0
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-flask/epel-6-$basearch/pubkey.gpg
 enabled=1
+
+[rmarko-python-alembic]
+name=Copr repo for python-alembic owned by rmarko
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-alembic/epel-6-$basearch/
+skip_if_unavailable=True
+gpgcheck=0
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-alembic/pubkey.gpg
+enabled=1
