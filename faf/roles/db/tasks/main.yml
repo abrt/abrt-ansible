@@ -5,39 +5,58 @@
   - postgresql-server
   - python-psycopg2
   - pg-semver
+  tags:
+  - packages
+  - postgresql
 
 - name: stop PostgreSQL
   service: name=postgresql state=stopped
   when: recreate_database
+  tags:
+  - postgresql
 
 - name: delete PostgreSQL data dir
   file: path=/var/lib/pgsql/data/ state=absent
   when: recreate_database
+  tags:
+  - postgresql
 
 - name: check /usr/bin/postgresql-setup existence
   stat: path=/usr/bin/postgresql-setup
   register: pgsetup_exists
+  tags:
+  - postgresql
 
 - name: initialize PostgreSQL database with postgresql-setup
   command: /usr/bin/postgresql-setup initdb
   when: first_time_setup and pgsetup_exists.stat.exists == True
+  tags:
+  - postgresql
 
 - name: initialize PostgreSQL database
   command: /sbin/service postgresql initdb
   when: first_time_setup and pgsetup_exists.stat.exists == False
+  tags:
+  - postgresql
 
 - name: start the PostgreSQL service
   service: name=postgresql state=started enabled=yes
+  tags:
+  - postgresql
 
 - postgresql_db: name=faf
   when: first_time_setup
   sudo: yes
   sudo_user: postgres
+  tags:
+  - postgresql
 
 - postgresql_user: db=faf name=faf priv=ALL
   when: first_time_setup
   sudo: yes
   sudo_user: postgres
+  tags:
+  - postgresql
 
 - name: load semver extension
   command: /usr/bin/psql -d faf -c "CREATE EXTENSION semver;"
@@ -46,9 +65,13 @@
   sudo_user: postgres
   register: create_ext_result
   ignore_errors: True
+  tags:
+  - postgresql
 
 - name: load semver extension for PostgreSQL older than 9.1
   command: /usr/bin/psql -d faf -f /usr/share/pgsql/contrib/semver.sql
   when: first_time_setup and create_ext_result|failed
   sudo: yes
   sudo_user: postgres
+  tags:
+  - postgresql

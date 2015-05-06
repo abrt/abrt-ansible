@@ -2,24 +2,36 @@
   yum : name={{ item }} state=installed
   with_items:
   - memcached
+  tags:
+  - packages
+  - memcached
 
 - name: install python-pylibmc package for Fedora
   yum : name={{ item }} state=installed
   with_items:
   - python-pylibmc
   when: ansible_distribution == 'Fedora'
+  tags:
+  - packages
+  - memcached
 
 - name: install python-memcached package for EL
   yum : name={{ item }} state=installed
   with_items:
   - python-memcached
   when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
+  tags:
+  - packages
+  - memcached
 
 - name: configure memcached
   template: src=etc-sysconfig-memcached
     dest=/etc/sysconfig/memcached
   notify:
   - restart memcached
+  tags:
+  - config
+  - memcached
 
-- name: start memcached service
+- name: enable memcached service
   service: name=memcached state=started enabled=yes

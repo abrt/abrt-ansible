@@ -3,10 +3,16 @@
   with_items:
     - faf-webui
     - faf-webui2
+  tags:
+  - packages
+  - faf
 
 - name: check /etc/faf/faf.conf existence so we don't overwrite it in case there's faf's storage as well
   stat: path=/etc/faf/faf.conf
   register: etcfaf_exists
+  tags:
+  - config
+  - faf
 
 - name: provide /etc/faf/faf.conf
   template: src=etc-faf-faf.conf.j2
@@ -14,12 +20,18 @@
   when: etcfaf_exists.stat.exists == False
   notify:
   - restart httpd
+  tags:
+  - config
+  - faf
 
 - name: provide /etc/faf/plugins/web2.conf
   template: src=etc-faf-plugins-web2.conf.j2
     dest=/etc/faf/plugins/web2.conf
   notify:
   - restart httpd
+  tags:
+  - config
+  - faf
 
 - name: put webfaf on root (/) if configured
   template: src=etc-httpd-conf.d-faf-web2.conf.j2
@@ -27,3 +39,6 @@
   when: webfaf_on_root
   notify:
   - restart httpd
+  tags:
+  - config
+  - faf

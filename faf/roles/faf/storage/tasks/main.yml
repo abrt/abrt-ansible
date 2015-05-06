@@ -1,34 +1,55 @@
 - name: erase faf packages
   yum: pkg="faf-*" state=absent
   when: force_reinstall
+  tags:
+  - packages
+  - faf
 
 - name: install faf packages
   yum: pkg="faf-*" state=installed
+  tags:
+  - packages
+  - faf
 
 - name: provide /etc/faf/faf.conf
   template: src=etc-faf-faf.conf.j2
     dest=/etc/faf/faf.conf
+  tags:
+  - config
+  - faf
 
 - name: create faf's database schema
   command: faf-migrate-db --create-all
   sudo: yes
   sudo_user: faf
   when: first_time_setup
+  tags:
+  - config
+  - faf
 
 - name: stamp database as migrated to latest version
   command: faf-migrate-db --stamp-only
   sudo: yes
   sudo_user: faf
   when: first_time_setup
+  tags:
+  - config
+  - faf
 
 - name: init faf
   command: faf init
   sudo: yes
   sudo_user: faf
   when: first_time_setup
+  tags:
+  - config
+  - faf
 
 - name: run databse migrations
   command: faf-migrate-db
   sudo: yes
   sudo_user: faf
   when: migrate_db
+  tags:
+  - config
+  - faf

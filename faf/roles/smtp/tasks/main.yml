@@ -2,14 +2,22 @@
   yum : name={{ item }} state=installed
   with_items:
   - postfix
+  tags:
+  - packages
+  - smtp
 
 - name: configure postfix
   template: src=etc-postfix-main.cf.j2
     dest=/etc/postfix/main.cf
   notify:
   - restart postfix
+  tags:
+  - config
+  - smtp
 
 - name: enable mail services
   service: name={{ item }} enabled=yes
   with_items:
   - postfix
+  tags:
+  - smtp
