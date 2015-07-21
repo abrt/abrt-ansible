@@ -1,7 +1,6 @@
 - name: install faf-webui packages
   yum : name={{ item }} state=latest
   with_items:
-    - faf-webui
     - faf-webui2
   tags:
   - packages
