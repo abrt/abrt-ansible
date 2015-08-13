@@ -57,3 +57,80 @@ force_reinstall: false
 
 # run faf's database migrations
 migrate_db: false
+
+with_bugtrackers: true
+with_celery: true
+with_fedmsg: false
+with_solutionfinders: true
+with_symboltransfer: false
+
+faf_packages:
+  - faf
+  - faf-migrations
+  - faf-yum
+
+faf_problem_packages:
+  - faf-problem-coredump
+  - faf-problem-java
+  - faf-problem-kerneloops
+  - faf-problem-python
+  - faf-problem-ruby
+
+faf_opsys_packages:
+  - faf-opsys-centos
+  - faf-opsys-fedora
+  - faf-opsys-rhel
+
+faf_action_packages:
+  - faf-action-add-compat-hashes
+  - faf-action-arch
+  - faf-action-archive-reports
+  - faf-action-c2p
+  - faf-action-cleanup-task-results
+  - faf-action-create-problems
+  - faf-action-external-faf
+  - faf-action-external-faf-clone-bz
+  - faf-action-find-components
+  - faf-action-find-crash-function
+  - faf-action-mark-probably-fixed
+  - faf-action-pull-associates
+  - faf-action-pull-components
+  - faf-action-pull-releases
+  - faf-action-pull-reports
+  - faf-action-repo
+  - faf-action-retrace
+  - faf-action-retrace-remote
+  - faf-action-save-reports
+  - faf-action-shell
+  - faf-action-stats
+
+faf_bugtracker_packages:
+  - faf-action-bugtracker
+  - faf-bugtracker-bugzilla
+  - faf-bugtracker-centos-mantis
+  - faf-bugtracker-fedora-bugzilla
+  - faf-bugtracker-mantis
+  - faf-bugtracker-rhel-bugzilla
+
+faf_celery_packages:
+  - faf-celery-tasks
+  - faf-celery-tasks-systemd-services
+
+faf_fedmsg_packages:
+  - faf-action-fedmsg-notify
+  - faf-fedmsg
+  - faf-fedmsg-realtime
+
+faf_solutionfinder_packages:
+  - faf-action-sf-prefilter
+  - faf-solutionfinder-prefilter
+  - faf-solutionfinder-probable-fix
+
+faf_web_packages:
+  - faf-webui2
+
+faf_web_celery_packages:
+  - faf-blueprint-celery-tasks
+
+faf_web_symboltransfer_packages:
+  - faf-blueprint-symbol-transfer

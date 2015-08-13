@@ -5,11 +5,65 @@
   - packages
   - faf
 
-- name: install faf packages
-  yum: pkg="faf-*" state=installed
+- name: install core faf packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_packages }}"
   tags:
   - packages
   - faf
+
+- name: install faf problem packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_problem_packages }}"
+  tags:
+  - packages
+  - faf
+
+- name: install faf opsys packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_opsys_packages }}"
+  tags:
+  - packages
+  - faf
+
+- name: install faf action packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_action_packages }}"
+  tags:
+  - packages
+  - faf
+
+- name: install faf bugtracker packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_bugtracker_packages }}"
+  tags:
+  - packages
+  - faf
+  when: with_bugtrackers
+
+- name: install faf celery packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_celery_packages }}"
+  tags:
+  - packages
+  - faf
+  when: with_celery
+
+- name: install faf fedmsg packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_fedmsg_packages }}"
+  tags:
+  - packages
+  - faf
+  when: with_fedmsg
+
+- name: install faf solutionfinder packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_solutionfinder_packages }}"
+  tags:
+  - packages
+  - faf
+  when: with_solutionfinders
 
 - name: provide /etc/faf/faf.conf
   template: src=etc-faf-faf.conf.j2

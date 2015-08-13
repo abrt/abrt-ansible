@@ -1,10 +1,20 @@
 - name: install faf-webui packages
   yum : name={{ item }} state=latest
-  with_items:
-    - faf-webui2
+  with_items: "{{ faf_web_packages }}"
   tags:
   - packages
   - faf
+
+- include: celery.yml
+  when: with_celery
+
+- name: install faf web symboltransfer packages
+  yum: pkg={{ item }} state=installed
+  with_items: "{{ faf_web_symboltransfer_packages }}"
+  tags:
+  - packages
+  - faf
+  when: with_symboltransfer
 
 - name: check /etc/faf/faf.conf existence so we don't overwrite it in case there's faf's storage as well
   stat: path=/etc/faf/faf.conf
