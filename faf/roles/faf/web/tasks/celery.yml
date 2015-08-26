@@ -9,6 +9,7 @@
   yum : name={{ item }} state=installed
   with_items:
   - redis
+  - python-redis
   tags:
   - packages
   - redis
