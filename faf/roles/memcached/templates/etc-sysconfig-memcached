@@ -1,3 +1,4 @@
+#{{ ansible_managed }}
 PORT="{{ memcached_port }}"
 USER="memcached"
 MAXCONN="{{ memcached_maxconn }}"
