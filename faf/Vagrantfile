@@ -9,6 +9,7 @@ Vagrant.configure("2") do |config|
       domain.storage_pool_name = "default"
     end
   end
+  config.vm.synced_folder ".", "/mnt", disabled: true
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"
     ansible.groups = {
