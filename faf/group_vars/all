@@ -127,7 +127,7 @@ faf_solutionfinder_packages:
   - faf-solutionfinder-probable-fix
 
 faf_web_packages:
-  - faf-webui2
+  - faf-webui
 
 faf_web_celery_packages:
   - faf-blueprint-celery-tasks

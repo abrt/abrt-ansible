@@ -2,8 +2,8 @@
 # WSGI handler
 WSGIPythonOptimize 1
 WSGISocketPrefix /var/spool/faf/wsgi2
-WSGIDaemonProcess faf2 user=faf group=faf processes=3 threads=5
-WSGIProcessGroup faf2
+WSGIDaemonProcess faf user=faf group=faf processes=3 threads=5
+WSGIProcessGroup faf
 
 {% if ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6' %}
   {% set python = 'python2.6' %}
@@ -11,7 +11,7 @@ WSGIProcessGroup faf2
   {% set python = 'python2.7' %}
 {% endif %}
 
-WSGIScriptAlias / /usr/lib/{{ python }}/site-packages/webfaf2/hub.wsgi
+WSGIScriptAlias / /usr/lib/{{ python }}/site-packages/webfaf/hub.wsgi
 
 <Location />
     <IfModule mod_authz_core.c>
@@ -26,7 +26,7 @@ WSGIScriptAlias / /usr/lib/{{ python }}/site-packages/webfaf2/hub.wsgi
 </Location>
 
 # project main
-<Directory "/usr/lib/{{ python }}/site-packages/webfaf2/">
+<Directory "/usr/lib/{{ python }}/site-packages/webfaf/">
     Options Indexes
     IndexOptions FancyIndexing
     <IfModule mod_authz_core.c>
@@ -41,8 +41,8 @@ WSGIScriptAlias / /usr/lib/{{ python }}/site-packages/webfaf2/hub.wsgi
 </Directory>
 
 # static
-Alias /static "/usr/share/faf/web2/static"
-<Directory "/usr/share/faf/web2/static">
+Alias /static "/usr/share/faf/web/static"
+<Directory "/usr/share/faf/web/static">
     Options Indexes
     IndexOptions FancyIndexing
     <IfModule mod_authz_core.c>

@@ -1,5 +1,5 @@
 #{{ ansible_managed }}
-[hub2]
+[hub]
 debug = false
 proxy_setup = false
 secret_key = {{ secret_key }}
@@ -47,4 +47,4 @@ MaxDumpDirSize = 1073741824
 type = {{ cache_type }}
 memcached_host = localhost
 memcached_port = {{ memcached_port }}
-memcached_key_prefix = webfaf2
+memcached_key_prefix = webfaf
