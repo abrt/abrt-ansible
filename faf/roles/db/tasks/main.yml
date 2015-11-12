@@ -11,13 +11,13 @@
 
 - name: stop PostgreSQL
   service: name=postgresql state=stopped
-  when: recreate_database
+  when: faf_recreate_database is defined and faf_recreate_database
   tags:
   - postgresql
 
 - name: delete PostgreSQL data dir
   file: path=/var/lib/pgsql/data/ state=absent
-  when: recreate_database
+  when: faf_recreate_database is defined and faf_recreate_database
   tags:
   - postgresql
 
@@ -29,13 +29,13 @@
 
 - name: initialize PostgreSQL database with postgresql-setup
   command: /usr/bin/postgresql-setup initdb
-  when: first_time_setup and pgsetup_exists.stat.exists == True
+  when: faf_first_time_setup is defined and faf_first_time_setup and pgsetup_exists.stat.exists == True
   tags:
   - postgresql
 
 - name: initialize PostgreSQL database
   command: /sbin/service postgresql initdb
-  when: first_time_setup and pgsetup_exists.stat.exists == False
+  when: faf_first_time_setup is defined and faf_first_time_setup and pgsetup_exists.stat.exists == False
   tags:
   - postgresql
 
@@ -45,14 +45,14 @@
   - postgresql
 
 - postgresql_db: name=faf
-  when: first_time_setup
+  when: faf_first_time_setup is defined and faf_first_time_setup
   sudo: yes
   sudo_user: postgres
   tags:
   - postgresql
 
 - postgresql_user: db=faf name=faf priv=ALL
-  when: first_time_setup
+  when: faf_first_time_setup is defined and faf_first_time_setup
   sudo: yes
   sudo_user: postgres
   tags:
@@ -60,7 +60,7 @@
 
 - name: load semver extension
   command: /usr/bin/psql -d faf -c "CREATE EXTENSION semver;"
-  when: first_time_setup
+  when: faf_first_time_setup is defined and faf_first_time_setup
   sudo: yes
   sudo_user: postgres
   register: create_ext_result
@@ -70,7 +70,7 @@
 
 - name: load semver extension for PostgreSQL older than 9.1
   command: /usr/bin/psql -d faf -f /usr/share/pgsql/contrib/semver.sql
-  when: first_time_setup and create_ext_result|failed
+  when: faf_first_time_setup is defined and faf_first_time_setup and create_ext_result|failed
   sudo: yes
   sudo_user: postgres
   tags:

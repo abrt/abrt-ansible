@@ -15,6 +15,7 @@ Simplest way to get a faf instance running is:
 
 - ``git clone https://github.com/abrt/abrt-ansible.git``
 - ``cd abrt-ansible/faf``
+- ``./fetch_remote_roles``
 - ``vagrant up``
 
 This will create a Fedora virtual machine using
@@ -32,7 +33,7 @@ Following steps can be used to deploy and configure faf instance:
 - use ``ssh-copy-id`` to copy correct ssh key to the testing machine's root account
   (there's a ``private_key_file`` configuration option in ``conf/config`` which
   specifies a private key file ansible uses)
-- run ``./run --extra-vars="first_time_setup=true"``
+- run ``./run --extra-vars="faf_first_time_setup=true"``
   this will ensure that the PostgreSQL database is created and populated with minimal
   data required by faf
 - point your browser to the hostname or IP address of your testing machine to verify the installation
@@ -42,4 +43,4 @@ Following steps can be used to deploy and configure faf instance:
 
 Running database migrations:
 
-- ``./run --extra-vars="migrate_db=true"``
+- ``./run --extra-vars="faf_migrate_db=true"``

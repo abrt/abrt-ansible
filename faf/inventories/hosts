@@ -1,13 +1,9 @@
-[web]
-faf.local
-
-[storage]
+[faf]
 faf.local
 
 [db]
 faf.local
 
 [devel:children]
-web
-storage
+faf
 db

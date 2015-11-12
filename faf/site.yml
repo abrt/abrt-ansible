@@ -11,16 +11,10 @@
   roles:
     - db
 
-- name: deploy and configure faf storage (backend)
-  hosts: storage
-  sudo: yes
-  roles:
-    - faf/storage
-
-- name: deploy and configure faf web (frontend)
-  hosts: web
+- name: deploy and configure faf
+  hosts: faf
   sudo: yes
   roles:
     - httpd
     - memcached
-    - faf/web
+    - faf

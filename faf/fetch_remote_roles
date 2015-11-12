@@ -1,0 +1,6 @@
+#!/bin/bash
+pushd roles
+
+git clone https://github.com/abrt/ansible-role-faf faf
+
+popd
