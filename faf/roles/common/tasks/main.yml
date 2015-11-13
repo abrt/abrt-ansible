@@ -5,6 +5,7 @@
   yum : name={{ item }} state=installed
   with_items:
   - iptables
+  - iptables-services
   - libselinux-python
   - ntp
   - policycoreutils
@@ -45,20 +46,20 @@
   - selinux
 
 - name: create the EPEL Repository
-  copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
-  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
+  yum: name="{{ epel_repo_url }}" state=present
+  when: ansible_os_family == 'RedHat'
   tags:
   - config
 
 - name: create the GPG key for EPEL
-  copy: src=RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
-  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
+  rpm_key: key="{{ epel_key_path }}" state=present
+  when: ansible_os_family == 'RedHat'
   tags:
   - config
 
 - name: create ABRT Repository for EL
-  copy: src=epel-abrt.repo dest=/etc/yum.repos.d/epel-abrt.repo
-  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6' and faf_custom_repository_url is not defined
+  template: src=epel-abrt.repo.j2 dest=/etc/yum.repos.d/epel-abrt.repo
+  when: ansible_os_family == 'RedHat' and faf_custom_repository_url is not defined
   tags:
   - config
 

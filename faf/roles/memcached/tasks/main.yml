@@ -19,7 +19,7 @@
   yum : name={{ item }} state=installed
   with_items:
   - python-memcached
-  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
+  when: ansible_os_family == 'RedHat'
   tags:
   - packages
   - memcached
