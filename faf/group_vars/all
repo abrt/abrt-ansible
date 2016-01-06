@@ -34,3 +34,6 @@ ssl_cert_chain_dest_path: /etc/pki/tls/certs/{{ domain }}.intermediate.cert
 
 epel_repo_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
 epel_key_path: "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
+
+abrt_repo_url: http://repos.fedorapeople.org/repos/abrt/abrt/epel-$releasever/$basearch/
+abrt_source_repo_url: https://repos.fedorapeople.org/repos/abrt/abrt/epel-$releasever/SRPMS/
