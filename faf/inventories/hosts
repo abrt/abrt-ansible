@@ -1,5 +1,8 @@
 [faf]
-faf.local
+abrt.local
 
 [db]
-faf.local
+abrt.local
+
+[retrace_server]
+abrt.local

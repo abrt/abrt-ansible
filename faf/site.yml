@@ -18,3 +18,10 @@
     - httpd
     - memcached
     - faf
+
+- name: deploy and configure retrace server
+  hosts: retrace_server
+  sudo: yes
+  roles:
+    - httpd
+    - retrace_server

@@ -1,6 +1,7 @@
 Currently supported components:
 
 - faf
+- retrace-server
 
 Component specific how-to
 -------------------------
