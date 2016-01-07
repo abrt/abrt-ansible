@@ -15,7 +15,7 @@ Using Vagrant
 Simplest way to get a faf instance running is:
 
 - ``git clone https://github.com/abrt/abrt-ansible.git``
-- ``cd abrt-ansible/faf``
+- ``cd abrt-ansible``
 - ``./fetch_remote_roles``
 - ``vagrant up``
 
@@ -29,7 +29,6 @@ Provisioning with Ansible
 Following steps can be used to deploy and configure faf instance:
 
 - create a virtual machine (either Fedora or EL)
-- go to ``faf/`` directory
 - edit ``inventories/hosts`` to use hostname or IP address of your testing machine
 - use ``ssh-copy-id`` to copy correct ssh key to the testing machine's root account
   (there's a ``private_key_file`` configuration option in ``conf/config`` which
