@@ -3,7 +3,3 @@ faf.local
 
 [db]
 faf.local
-
-[devel:children]
-faf
-db
