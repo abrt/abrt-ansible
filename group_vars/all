@@ -12,6 +12,9 @@ smtp_password:
 
 # disable when using LXC
 selinux: true
+selinux_state: enforcing
+selinux_policy: targeted
+
 
 # server alias used in httpd
 httpd_alias:
