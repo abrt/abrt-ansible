@@ -15,13 +15,19 @@ skip_if_unavailable=1
 gpgcheck=0
 
 {% if ansible_distribution_major_version == '7' %}
+[centos-extras]
+name=centos-extras
+enabled=1
+gpgcheck=0
+baseurl={{ centos_extras_url }}
+
 [rmarko-satyr]
 name=Copr repo for satyr owned by rmarko
 baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/satyr/epel-7-$basearch/
 skip_if_unavailable=True
 gpgcheck=0
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/satyr/pubkey.gpg
-enabled=1
+enabled=0
 enabled_metadata=1
 
 [rmarko-python-celery]
@@ -30,7 +36,7 @@ baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-celery/epe
 skip_if_unavailable=True
 gpgcheck=0
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-celery/pubkey.gpg
-enabled=1
+enabled=0
 
 [rmarko-python-kombu]
 name=Copr repo for python-kombu owned by rmarko
@@ -38,7 +44,7 @@ baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-kombu/epel
 skip_if_unavailable=True
 gpgcheck=0
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-kombu/pubkey.gpg
-enabled=1
+enabled=0
 
 [rmarko-python-billiard]
 name=Copr repo for python-billiard owned by rmarko
@@ -46,47 +52,5 @@ baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-billiard/e
 skip_if_unavailable=True
 gpgcheck=0
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-billiard/pubkey.gpg
-enabled=1
-{% endif %}
-
-{% if ansible_distribution_major_version == '6' %}
-[rmarko-python-psycopg2]
-name=Copr repo for python-psycopg2 owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-psycopg2/epel-6-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-psycopg2/epel-6-$basearch/pubkey.gpg
-enabled=1
-
-[rmarko-python-jinja2]
-name=Copr repo for python-jinja2 owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-jinja2/epel-6-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-jinja2/epel-6-$basearch/pubkey.gpg
-enabled=1
-
-[rmarko-python-testing.postgresql]
-name=Copr repo for python-testing.postgresql owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-testing.postgresql/epel-6-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-testing.postgresql/epel-6-$basearch/pubkey.gpg
-enabled=1
-
-[rmarko-python-flask]
-name=Copr repo for python-flask owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-flask/epel-6-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-flask/epel-6-$basearch/pubkey.gpg
-enabled=1
-
-[rmarko-python-alembic]
-name=Copr repo for python-alembic owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-alembic/epel-6-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-alembic/pubkey.gpg
-enabled=1
+enabled=0
 {% endif %}

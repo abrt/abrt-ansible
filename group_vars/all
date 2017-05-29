@@ -40,3 +40,5 @@ epel_key_path: "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_
 
 abrt_repo_url: http://repos.fedorapeople.org/repos/abrt/abrt/epel-$releasever/$basearch/
 abrt_source_repo_url: https://repos.fedorapeople.org/repos/abrt/abrt/epel-$releasever/SRPMS/
+
+centos_extras_url: http://mirror.centos.org/centos-7/7/extras/x86_64/
