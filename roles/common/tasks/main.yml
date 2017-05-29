@@ -34,19 +34,19 @@
 
 - name: create the EPEL Repository
   yum: name="{{ epel_repo_url }}" state=present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_distribution == 'RedHat'
   tags:
   - config
 
 - name: create the GPG key for EPEL
   rpm_key: key="{{ epel_key_path }}" state=present
-  when: ansible_os_family == 'RedHat'
+  when: ansible_distribution == 'RedHat'
   tags:
   - config
 
 - name: create ABRT Repository for EL
   template: src=epel-abrt.repo.j2 dest=/etc/yum.repos.d/epel-abrt.repo
-  when: ansible_os_family == 'RedHat' and faf_custom_repository_url is not defined
+  when: ansible_distribution == 'RedHat' and faf_custom_repository_url is not defined
   tags:
   - config
 
