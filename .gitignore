@@ -1,5 +1,7 @@
-faf/files/*.crt
-faf/files/*.key
-faf/host_vars/
-faf/inventories/hosts
+files/*.crt
+files/*.key
+host_vars/
+inventories/hosts
 .vagrant
+roles/ansible-faf/
+roles/ansible-retrace-server/
