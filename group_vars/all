@@ -1,8 +1,8 @@
 ---
 # Variables listed here are applicable to all host groups
 
-domain: faf.local
-hostname: faf.local
+domain: abrt.local
+hostname: abrt.local
 
 rootmail: root@localhost.localdomain
 smtp_server: localhost
