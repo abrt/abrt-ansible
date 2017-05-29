@@ -1,0 +1,6 @@
+---
+- name: download remote roles
+  hosts: localhost
+  gather_facts: False
+  roles:
+  - local_roles

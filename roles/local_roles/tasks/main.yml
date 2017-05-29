@@ -1,0 +1,3 @@
+---
+- name: download roles from public github
+  local_action: command ansible-galaxy install -f -r requirements.yml --ignore-errors -p roles/

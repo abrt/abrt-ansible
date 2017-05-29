@@ -14,10 +14,10 @@
   roles:
     - httpd
     - memcached
-    - faf
+    - ansible-faf
 
 - name: deploy and configure retrace server
   hosts: retrace_server
   roles:
     - httpd
-    - retrace_server
+    - ansible-retrace-server
