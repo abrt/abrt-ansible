@@ -4,8 +4,6 @@
 - name: install common packages
   yum : name={{ item }} state=installed
   with_items:
-  - iptables
-  - iptables-services
   - libselinux-python
   - ntp
   - policycoreutils
@@ -19,7 +17,6 @@
   yum : name={{ item }} state=installed
   with_items:
   - bash-completion
-  - iptables-services
   when: ansible_distribution == 'Fedora'
   tags:
   - packages
@@ -107,18 +104,5 @@
   tags:
   - config
 
-- name: configure iptables
-  template: src=etc-sysconfig-iptables.j2
-    dest=/etc/sysconfig/iptables
-  notify:
-  - restart iptables
-  tags:
-  - config
-
-- name: configure ip6tables
-  template: src=etc-sysconfig-ip6tables.j2
-    dest=/etc/sysconfig/ip6tables
-  notify:
-  - restart ip6tables
-  tags:
-  - config
+- name: firewalld
+  include: firewall.yml

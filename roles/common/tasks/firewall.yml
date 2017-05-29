@@ -1,0 +1,19 @@
+---
+
+- name: check if firewalld is installed
+  command: rpm -q firewalld
+  register: fw_check
+  changed_when: false
+  args:
+    warn: no
+
+# skip block if firewalld is missing
+- block:
+  - name: start and enable firewalld
+    service: name=firewalld state=started enabled=yes
+
+  - name: allow https service
+    firewalld: service=https permanent=yes state=enabled
+    notify: restart firewalld
+
+  when: fw_check|succeeded
