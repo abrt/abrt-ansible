@@ -3,21 +3,16 @@
   roles:
     - common
     - smtp
-
-- name: deploy and configure PostgreSQL database server
-  hosts: db
-  roles:
-    - db
+    - httpd
 
 - name: deploy and configure faf
   hosts: faf
   roles:
-    - httpd
+    - db
     - memcached
     - ansible-faf
 
 - name: deploy and configure retrace server
   hosts: retrace_server
   roles:
-    - httpd
     - ansible-retrace-server

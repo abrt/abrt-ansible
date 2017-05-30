@@ -1,8 +1,5 @@
 [faf]
 abrt.local
 
-[db]
-abrt.local
-
 [retrace_server]
 abrt.local
