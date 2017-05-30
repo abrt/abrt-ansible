@@ -9,6 +9,10 @@
 
 # skip block if firewalld is missing
 - block:
+  - name: install python-firewall for fedora
+    package: name=python-firewall state=present
+    when: ansible_distribution == 'Fedora'
+
   - name: start and enable firewalld
     service: name=firewalld state=started enabled=yes
 
