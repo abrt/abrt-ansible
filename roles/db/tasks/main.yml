@@ -21,21 +21,15 @@
   tags:
   - postgresql
 
-- name: check /usr/bin/postgresql-setup existence
-  stat: path=/usr/bin/postgresql-setup
-  register: pgsetup_exists
+- name: check postgresql initdb
+  stat: path=/var/lib/pgsql/data/postgresql.conf
+  register: init_st
   tags:
   - postgresql
 
 - name: initialize PostgreSQL database with postgresql-setup
   command: /usr/bin/postgresql-setup initdb
-  when: faf_first_time_setup is defined and faf_first_time_setup and pgsetup_exists.stat.exists == True
-  tags:
-  - postgresql
-
-- name: initialize PostgreSQL database
-  command: /sbin/service postgresql initdb
-  when: faf_first_time_setup is defined and faf_first_time_setup and pgsetup_exists.stat.exists == False
+  when: init_st.stat.exists == false
   tags:
   - postgresql
 
@@ -44,34 +38,22 @@
   tags:
   - postgresql
 
-- postgresql_db: name=faf
-  when: faf_first_time_setup is defined and faf_first_time_setup
-  sudo: yes
-  sudo_user: postgres
+- name: create faf database
+  postgresql_db: name=faf owner=postgres state=present
+  become: yes
+  become_user: postgres
   tags:
   - postgresql
 
-- postgresql_user: db=faf name=faf priv=ALL
-  when: faf_first_time_setup is defined and faf_first_time_setup
-  sudo: yes
-  sudo_user: postgres
+- postgresql_user: db=faf name=faf priv=ALL role_attr_flags=SUPERUSER state=present
+  become: yes
+  become_user: postgres
   tags:
   - postgresql
 
-- name: load semver extension
-  command: /usr/bin/psql -d faf -c "CREATE EXTENSION semver;"
-  when: faf_first_time_setup is defined and faf_first_time_setup
-  sudo: yes
-  sudo_user: postgres
-  register: create_ext_result
-  ignore_errors: True
-  tags:
-  - postgresql
-
-- name: load semver extension for PostgreSQL older than 9.1
-  command: /usr/bin/psql -d faf -f /usr/share/pgsql/contrib/semver.sql
-  when: faf_first_time_setup is defined and faf_first_time_setup and create_ext_result|failed
-  sudo: yes
-  sudo_user: postgres
+- name: create semver extension
+  postgresql_ext: name=semver db=faf state=present
+  become: yes
+  become_user: postgres
   tags:
   - postgresql

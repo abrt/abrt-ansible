@@ -1,27 +1,18 @@
 - name: aplly common configuration to all nodes
   hosts: all
-  sudo: yes
   roles:
     - common
     - smtp
-
-- name: deploy and configure PostgreSQL database server
-  hosts: db
-  sudo: yes
-  roles:
-    - db
+    - httpd
 
 - name: deploy and configure faf
   hosts: faf
-  sudo: yes
   roles:
-    - httpd
+    - db
     - memcached
-    - faf
+    - ansible-faf
 
 - name: deploy and configure retrace server
   hosts: retrace_server
-  sudo: yes
   roles:
-    - httpd
-    - retrace_server
+    - ansible-retrace-server

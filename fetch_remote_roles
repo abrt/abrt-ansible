@@ -1,7 +1,4 @@
 #!/bin/bash
-pushd roles
 
-git clone https://github.com/abrt/ansible-role-faf faf
-git clone https://github.com/abrt/ansible-role-retrace-server retrace_server
-
-popd
+# Update faf and retrace-server roles from ABRT's public github.
+ansible-playbook -i localhost, setup.yml

@@ -1,0 +1,5 @@
+# Install a role from GitHub
+- name: ansible-faf
+  src: https://github.com/abrt/ansible-role-faf.git
+- name: ansible-retrace-server
+  src: https://github.com/abrt/ansible-role-retrace-server.git
