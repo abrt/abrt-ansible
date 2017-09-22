@@ -1,5 +1,6 @@
 - name: set correct hostname
   hostname: name={{ hostname }}
+  when: inventory_hostname != hostname
 
 - name: install common packages
   yum : name={{ item }} state=installed
