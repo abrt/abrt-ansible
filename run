@@ -1,1 +1,1 @@
-ANSIBLE_CONFIG=conf/config ansible-playbook -v site.yml $1
+ANSIBLE_CONFIG="$(pwd)/conf" ansible-playbook -v site.yml $1
