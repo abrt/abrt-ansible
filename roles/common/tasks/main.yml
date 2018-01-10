@@ -84,4 +84,4 @@
   - config
 
 - name: firewalld
-  include: firewall.yml
+  include_tasks: firewall.yml
