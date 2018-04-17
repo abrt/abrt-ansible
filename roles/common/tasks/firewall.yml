@@ -24,4 +24,4 @@
     firewalld: service=https permanent=yes state=enabled
     notify: restart firewalld
 
-  when: fw_check|succeeded
+  when: fw_check is succeeded
