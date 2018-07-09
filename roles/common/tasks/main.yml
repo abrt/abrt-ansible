@@ -3,7 +3,7 @@
   when: inventory_hostname != hostname
 
 - name: install common packages
-  yum : name={{ item }} state=installed
+  package: name={{ item }} state=installed
   with_items:
   - libselinux-python
   tags:
@@ -22,7 +22,7 @@
   - selinux
 
 - name: create the EPEL Repository
-  yum: name="{{ epel_repo_url }}" state=present
+  package: name="{{ epel_repo_url }}" state=present
   when: ansible_distribution == 'RedHat'
   tags:
   - config
