@@ -20,37 +20,4 @@ name=centos-extras
 enabled=1
 gpgcheck=0
 baseurl={{ centos_extras_url }}
-
-[rmarko-satyr]
-name=Copr repo for satyr owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/satyr/epel-7-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/satyr/pubkey.gpg
-enabled=0
-enabled_metadata=1
-
-[rmarko-python-celery]
-name=Copr repo for python-celery owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-celery/epel-7-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-celery/pubkey.gpg
-enabled=0
-
-[rmarko-python-kombu]
-name=Copr repo for python-kombu owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-kombu/epel-7-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-kombu/pubkey.gpg
-enabled=0
-
-[rmarko-python-billiard]
-name=Copr repo for python-billiard owned by rmarko
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-billiard/epel-7-$basearch/
-skip_if_unavailable=True
-gpgcheck=0
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rmarko/python-billiard/pubkey.gpg
-enabled=0
 {% endif %}
