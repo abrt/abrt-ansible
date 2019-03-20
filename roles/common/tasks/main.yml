@@ -67,12 +67,12 @@
   - config
 
 - name: clean repository metadata for custom repository
-  shell: yum --disablerepo=* --enablerepo=faf clean metadata
+  shell: dnf --disablerepo=* --enablerepo=faf clean metadata
   when: faf_force_reinstall is defined and faf_force_reinstall and faf_custom_repository_url is defined
   ignore_errors: yes
 
 - name: clean repository metadata for abrt repository
-  shell: yum --disablerepo=* --enablerepo=*-abrt clean metadata
+  shell: dnf --disablerepo=* --enablerepo=*-abrt clean metadata
   when: faf_force_reinstall is defined and faf_force_reinstall and faf_custom_repository_url is not defined
   ignore_errors: yes
 
