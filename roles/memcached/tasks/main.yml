@@ -9,7 +9,7 @@
 - name: install python-pylibmc package for Fedora
   package: name={{ item }} state=installed
   with_items:
-  - python-pylibmc
+  - python3-pylibmc
   when: ansible_distribution == 'Fedora'
   tags:
   - packages
