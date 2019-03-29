@@ -2,10 +2,8 @@
   hostname: name={{ hostname }}
   when: inventory_hostname != hostname
 
-- name: install common packages
-  package: name={{ item }} state=installed
-  with_items:
-  - python3-libselinux
+- name: install python-libselinux package
+  package: name=python3-libselinux state=latest
   tags:
   - packages
 
