@@ -1,8 +1,9 @@
 - name: install httpd package
-  package: name={{ item }} state=installed
-  with_items:
-  - httpd
-  - mod_ssl
+  package:
+    name:
+      - httpd
+      - mod_ssl
+    state: latest
   tags:
   - packages
   - httpd

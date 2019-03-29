@@ -1,10 +1,11 @@
 - name: install PostgreSQL packages
-  package: name={{ item }} state=installed
-  with_items:
-  - postgresql
-  - postgresql-server
-  - python3-psycopg2
-  - pg-semver
+  package:
+    name:
+      - postgresql
+      - postgresql-server
+      - python3-psycopg2
+      - pg-semver
+    state: latest
   tags:
   - packages
   - postgresql

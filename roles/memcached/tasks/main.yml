@@ -1,24 +1,18 @@
 - name: install memcached package
-  package: name={{ item }} state=installed
-  with_items:
-  - memcached
+  package: name=memcached state=latest
   tags:
   - packages
   - memcached
 
 - name: install python-pylibmc package for Fedora
-  package: name={{ item }} state=installed
-  with_items:
-  - python3-pylibmc
+  package: name=python3-pylibmc state=latest
   when: ansible_distribution == 'Fedora'
   tags:
   - packages
   - memcached
 
 - name: install python-memcached package for EL
-  package: name={{ item }} state=installed
-  with_items:
-  - python-memcached
+  package: name=python-memcached state=latest
   when: ansible_distribution == 'RedHat'
   tags:
   - packages
