@@ -5,7 +5,7 @@
 - name: install common packages
   package: name={{ item }} state=installed
   with_items:
-  - libselinux-python
+  - python3-libselinux
   tags:
   - packages
 
