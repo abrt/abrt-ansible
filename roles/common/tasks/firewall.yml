@@ -7,13 +7,21 @@
 # skip block if firewalld is missing
 - block:
   - name: install python3-firewall
-    package: name=python3-firewall state=latest
+    package:
+      name: python3-firewall
+      state: present
 
   - name: start and enable firewalld
-    service: name=firewalld state=started enabled=yes
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
 
   - name: allow https service
-    firewalld: service=https permanent=yes state=enabled
+    firewalld:
+      service: https
+      permanent: yes
+      state: enabled
     notify: restart firewalld
 
   when: "'firewalld' in ansible_facts.packages"

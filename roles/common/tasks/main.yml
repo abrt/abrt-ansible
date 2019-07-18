@@ -1,65 +1,81 @@
 - name: set correct hostname
-  hostname: name={{ hostname }}
+  hostname:
+    name: "{{ hostname }}"
   when: inventory_hostname != hostname
 
 - name: install python-libselinux package
-  package: name=python3-libselinux state=latest
+  package:
+    name: python3-libselinux
+    state: latest
   tags:
   - packages
 
 - name: SELinux Enforcing (Targeted)
-  selinux: policy="{{selinux_policy}}" state="{{selinux_state}}"
-  when: selinux
+  selinux:
+    policy: "{{selinux_policy}}"
+    state: "{{selinux_state}}"
+  when: selinux|bool
   tags:
   - selinux
 
 - name: Allow httpd_can_network_memcache SELinux boolean
   shell: setsebool httpd_can_network_memcache 1
-  when: selinux
+  when: selinux|bool
   tags:
   - selinux
 
 - name: create the EPEL Repository
-  package: name="{{ epel_repo_url }}" state=present
+  package:
+    name: "{{ epel_repo_url }}"
+    state: present
   when: ansible_distribution == 'RedHat'
   tags:
   - config
 
 - name: create the GPG key for EPEL
-  rpm_key: key="{{ epel_key_path }}" state=present
+  rpm_key:
+    key: "{{ epel_key_path }}"
+    state: present
   when: ansible_distribution == 'RedHat'
   tags:
   - config
 
 - name: create ABRT Repository for EL
-  template: src=epel-abrt.repo.j2 dest=/etc/yum.repos.d/epel-abrt.repo
+  template:
+    src: epel-abrt.repo.j2
+    dest: /etc/yum.repos.d/epel-abrt.repo
   when: ansible_distribution == 'RedHat' and faf_custom_repository_url is not defined
   tags:
   - config
 
 - name: create ABRT Repository for Fedora
-  copy: src=fedora-abrt.repo dest=/etc/yum.repos.d/fedora-abrt.repo
+  copy:
+    src: fedora-abrt.repo
+    dest: /etc/yum.repos.d/fedora-abrt.repo
   when: ansible_distribution == 'Fedora' and faf_custom_repository_url is not defined
   tags:
   - config
 
 - name: remove ABRT repository if custom repo is enabled
-  file: path=/etc/yum.repos.d/fedora-abrt.repo
-    state=absent
+  file:
+    path: /etc/yum.repos.d/fedora-abrt.repo
+    state: absent
   when: faf_custom_repository_url is defined
   tags:
   - config
 
 - name: create custom FAF repository
-  template: src=custom-faf.repo.j2
-    dest=/etc/yum.repos.d/custom-faf.repo
+  template:
+    src: custom-faf.repo.j2
+    dest: /etc/yum.repos.d/custom-faf.repo
   when: faf_custom_repository_url is defined
   tags:
   - config
 
 - name: remove custom repository if present and disabled
-  file: path=/etc/yum.repos.d/custom-faf.repo
-    state=absent
+  file:
+    path: /etc/yum.repos.d/custom-faf.repo
+    state: absent
   when: faf_custom_repository_url is not defined
   tags:
   - config

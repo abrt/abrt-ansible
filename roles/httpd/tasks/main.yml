@@ -17,8 +17,9 @@
   - httpd
 
 - name: configure httpd
-  template: src=etc-httpd-conf-httpd.conf.j2
-    dest=/etc/httpd/conf/httpd.conf
+  template:
+    src: etc-httpd-conf-httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
   notify:
   - restart httpd
   tags:
@@ -26,29 +27,39 @@
   - httpd
 
 - name: copy SSL key
-  copy: src={{ ssl_key_src_path }} dest={{ ssl_key_dest_path }} mode=640
+  copy:
+    src: "{{ ssl_key_src_path }}"
+    dest: "{{ ssl_key_dest_path }}"
+    mode: 640
   when: ssl_key_src_path and ssl_key_dest_path
   tags:
   - config
   - httpd
 
 - name: copy SSL cert
-  copy: src={{ ssl_cert_src_path }} dest={{ ssl_cert_dest_path }} mode=644
+  copy:
+    src: "{{ ssl_cert_src_path }}"
+    dest: "{{ ssl_cert_dest_path }}"
+    mode: 644
   when: ssl_cert_src_path and ssl_cert_dest_path
   tags:
   - config
   - httpd
 
 - name: copy SSL chain cert
-  copy: src={{ ssl_cert_chain_src_path }} dest={{ ssl_cert_chain_dest_path }} mode=644
+  copy:
+    src: "{{ ssl_cert_chain_src_path }}"
+    dest: "{{ ssl_cert_chain_dest_path }}"
+    mode: 644
   when: ssl_cert_chain_src_path and ssl_cert_chain_dest_path
   tags:
   - config
   - httpd
 
 - name: add ssl vhost
-  template: src=ssl-vhost.conf.j2
-    dest=/etc/httpd/conf.d/ssl-vhost.conf
+  template:
+    src: ssl-vhost.conf.j2
+    dest: /etc/httpd/conf.d/ssl-vhost.conf
   when: ssl_key_src_path is defined and ssl_key_src_path
   notify:
   - restart httpd
@@ -57,8 +68,9 @@
   - httpd
 
 - name: delete default ssl config
-  file: path=/etc/httpd/conf.d/ssl.conf
-    state=absent
+  file:
+    path: /etc/httpd/conf.d/ssl.conf
+    state: absent
   when: ssl_key_src_path is defined and ssl_key_src_path
   notify:
   - restart httpd
@@ -67,7 +79,10 @@
   - httpd
 
 - name: enable httpd service
-  service: name=httpd state=started enabled=yes
+  service:
+    name: httpd
+    state: started
+    enabled: yes
   tags:
   - config
   - httpd

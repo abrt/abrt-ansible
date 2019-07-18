@@ -1,5 +1,9 @@
 - name: restart sqlgrey
-  service: name=sqlgrey state=restarted
+  service:
+    name: sqlgrey
+    state: restarted
 
 - name: restart postfix
-  service: name=postfix state=restarted
+  service:
+    name: postfix
+    state: restarted

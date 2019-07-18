@@ -1,2 +1,4 @@
 - name: restart memcached
-  service: name=memcached state=restarted
+  service:
+    name: memcached
+    state: restarted

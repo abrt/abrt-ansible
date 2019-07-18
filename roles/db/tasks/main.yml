@@ -11,13 +11,17 @@
   - postgresql
 
 - name: stop PostgreSQL
-  service: name=postgresql state=stopped
+  service:
+    name: postgresql
+    state: stopped
   when: faf_recreate_database is defined and faf_recreate_database
   tags:
   - postgresql
 
 - name: delete PostgreSQL data dir
-  file: path=/var/lib/pgsql/data/ state=absent
+  file:
+    path: /var/lib/pgsql/data/
+    state: absent
   when: faf_recreate_database is defined and faf_recreate_database
   tags:
   - postgresql
@@ -35,25 +39,40 @@
   - postgresql
 
 - name: start the PostgreSQL service
-  service: name=postgresql state=started enabled=yes
+  service:
+    name: postgresql
+    state: started
+    enabled: yes
   tags:
   - postgresql
 
 - name: create faf database
-  postgresql_db: name=faf owner=postgres state=present
+  postgresql_db:
+    name: faf
+    owner: postgres
+    state: present
   become: yes
   become_user: postgres
   tags:
   - postgresql
 
-- postgresql_user: db=faf name=faf priv=ALL role_attr_flags=SUPERUSER state=present
+- name: grant superuser to faf
+  postgresql_user:
+    db: faf
+    name: faf
+    priv: ALL
+    role_attr_flags: SUPERUSER
+    state: present
   become: yes
   become_user: postgres
   tags:
   - postgresql
 
 - name: create semver extension
-  postgresql_ext: name=semver db=faf state=present
+  postgresql_ext:
+    name: semver
+    db: faf
+    state: present
   become: yes
   become_user: postgres
   tags:

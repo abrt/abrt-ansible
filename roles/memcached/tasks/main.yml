@@ -1,26 +1,33 @@
 - name: install memcached package
-  package: name=memcached state=latest
+  package:
+    name: memcached
+    state: present
   tags:
   - packages
   - memcached
 
 - name: install python-pylibmc package for Fedora
-  package: name=python3-pylibmc state=latest
+  package:
+    name: python3-pylibmc
+    state: latest
   when: ansible_distribution == 'Fedora'
   tags:
   - packages
   - memcached
 
 - name: install python-memcached package for EL
-  package: name=python-memcached state=latest
+  package:
+    name: python-memcached
+    state: latest
   when: ansible_distribution == 'RedHat'
   tags:
   - packages
   - memcached
 
 - name: configure memcached
-  template: src=etc-sysconfig-memcached
-    dest=/etc/sysconfig/memcached
+  template:
+    src: etc-sysconfig-memcached
+    dest: /etc/sysconfig/memcached
   notify:
   - restart memcached
   tags:
@@ -28,4 +35,10 @@
   - memcached
 
 - name: enable memcached service
-  service: name=memcached state=started enabled=yes
+  service:
+    name: memcached
+    state: started
+    enabled: yes
+  tags:
+  - config
+  - memcached
