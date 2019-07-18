@@ -17,7 +17,6 @@ Vagrant.configure("2") do |config|
        ansible.compatibility_mode = "auto"
        ansible.groups = {
          "faf" => ["faf"],
-         "db" => ["faf"],
          "all_groups:children" => ["faf"]
        }
 
