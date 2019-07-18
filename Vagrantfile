@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.define "faf" do |faf|
     faf.vm.box = "fedora/30-cloud-base"
+    faf.vm.hostname = "faf.local"
     faf.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 2
@@ -25,6 +26,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "rs" do |rs|
     rs.vm.box = "fedora/30-cloud-base"
+    rs.vm.hostname = "rs.local"
     rs.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 2
