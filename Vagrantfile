@@ -19,10 +19,6 @@ Vagrant.configure("2") do |config|
          "faf" => ["faf"],
          "all_groups:children" => ["faf"]
        }
-
-       ansible.extra_vars = {
-          faf_first_time_setup: true,
-       }
     end
   end
 
