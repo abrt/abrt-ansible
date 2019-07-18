@@ -3,7 +3,7 @@
     name:
       - httpd
       - mod_ssl
-    state: latest
+    state: present
   tags:
   - packages
   - httpd
