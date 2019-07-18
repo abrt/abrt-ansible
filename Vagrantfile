@@ -12,6 +12,9 @@ Vagrant.configure("2") do |config|
 
     faf.vm.provision "ansible" do |ansible|
        ansible.playbook = "site.yml"
+       ansible.become = true
+       ansible.config_file = "conf/ansible.cfg"
+       ansible.compatibility_mode = "auto"
        ansible.groups = {
          "faf" => ["faf"],
          "db" => ["faf"],
@@ -37,6 +40,9 @@ Vagrant.configure("2") do |config|
 
     rs.vm.provision "ansible" do |ansible|
        ansible.playbook = "site.yml"
+       ansible.become = true
+       ansible.config_file = "conf/ansible.cfg"
+       ansible.compatibility_mode = "auto"
        ansible.groups = {
          "retrace_server" => ["rs"],
          "all_groups:children" => ["rs"]
