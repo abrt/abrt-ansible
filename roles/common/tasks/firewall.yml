@@ -1,11 +1,8 @@
 ---
 
 - name: check if firewalld is installed
-  command: rpm -q firewalld
-  register: fw_check
-  changed_when: false
-  args:
-    warn: no
+  package_facts:
+    manager: "auto"
 
 # skip block if firewalld is missing
 - block:
@@ -19,4 +16,4 @@
     firewalld: service=https permanent=yes state=enabled
     notify: restart firewalld
 
-  when: fw_check is succeeded
+  when: "'firewalld' in ansible_facts.packages"
