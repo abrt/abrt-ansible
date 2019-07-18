@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.define "faf" do |faf|
-    faf.vm.box = "dliappis/centos7minlibvirt"
+    faf.vm.box = "fedora/30-cloud-base"
     faf.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 2
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "rs" do |rs|
-    rs.vm.box = "dliappis/centos7minlibvirt"
+    rs.vm.box = "fedora/30-cloud-base"
     rs.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 2
