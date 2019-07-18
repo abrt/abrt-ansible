@@ -48,8 +48,7 @@ Vagrant.configure("2") do |config|
          "all_groups:children" => ["rs"]
        }
        ansible.extra_vars = {
-
-         selinux: false,
+         selinux: true,
        }
      end
   end
