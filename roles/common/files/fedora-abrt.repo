@@ -10,3 +10,25 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/@abrt/devel/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[abrt-faf-el8-devel]
+name=Copr repo for faf-el8-devel owned by @abrt
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@abrt/faf-el8-devel/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@abrt/faf-el8-devel/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[abrt-retrace-server-devel]
+name=Copr repo for retrace-server-devel owned by @abrt
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@abrt/retrace-server-devel/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@abrt/retrace-server-devel/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
