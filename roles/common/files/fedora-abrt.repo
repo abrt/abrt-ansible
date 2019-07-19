@@ -1,15 +1,12 @@
 # Place this file in your /etc/yum.repos.d/ directory
 
-[fedora-abrt]
-name=Nightly builds of ABRT related projects - abrt, libreport, btparser, faf
-baseurl=http://repos.fedorapeople.org/repos/abrt/abrt/fedora-$releasever/$basearch/
+[abrt-devel]
+name=Copr repo for devel owned by @abrt
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@abrt/devel/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@abrt/devel/pubkey.gpg
+repo_gpgcheck=0
 enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-
-[fedora-abrt-source]
-name=Nightly builds of ABRT related projects - abrt, libreport, btparser, faf - Source
-baseurl=http://repos.fedorapeople.org/repos/abrt/abrt/fedora-$releasever/SRPMS
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
+enabled_metadata=1
