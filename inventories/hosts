@@ -1,5 +1,5 @@
 [faf]
-abrt.local
+faf.local
 
 [retrace_server]
-abrt.local
+rs.local

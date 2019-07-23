@@ -2,5 +2,5 @@
 # faf settings
 faf_cron_jobs: false
 faf_web_on_root: false
-faf_check: true
-faf_check_web: true
+faf_check: false
+faf_check_web: false
