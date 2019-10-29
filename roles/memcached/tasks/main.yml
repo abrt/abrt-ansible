@@ -17,7 +17,7 @@
 
 - name: install python-memcached package for EL
   package:
-    name: python-memcached
+    name: python3-memcached
     state: latest
   when: ansible_distribution == 'RedHat'
   tags:
